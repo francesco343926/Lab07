@@ -8,6 +8,20 @@ from model.museoDTO import Museo
 
 class MuseoDAO:
     def __init__(self):
-        pass
-
     # TODO
+
+        self.database_connect = ConnessioneDB
+
+    def get_musei(self):
+        cnx = self.database_connect.get_connection()
+        cursor = cnx.cursor(dictionary=True)
+        query = """ SELECT *
+            FROM museo"""
+        cursor.execute(query)
+        result = []
+        for riga in cursor:
+            result.append(Museo(riga["id"],
+                                riga["nome"], riga["tipologia"]))
+        cursor.close()
+        cnx.close()
+        return result

@@ -37,9 +37,21 @@ class View:
 
         # --- Sezione 2: Filtraggio ---
         # TODO
+        self.scelta_museo= ft.Dropdown(label="Museo", options=[], width=200)
+        self.scelta_epoca = ft.Dropdown(label="Epoca", options=[], width=200)
+        self.controller.popola_musei()
+        self.controller.popola_epoche()
+        """Per popolare il menu a tendina tramite DropDown, occorre 
+        aggiungere alla sua lista options oggetti di tipo ft.dropdown.Option. Ad esempio:
+        self._view.elemento_dropdown.options.append(ft.dropdown.Option("Scelta 1"))`"""
 
         # Sezione 3: Artefatti
         # TODO
+        self.pulsante_Artefatti= ft.ElevatedButton(text="Mostra Artefatti",
+                                                   on_click= self.controller.trovArtefatto)
+        self.artefatti_scelti = ft.ListView(auto_scroll=True)
+        """Se nessun artefatto soddisfa i 
+        criteri di filtraggio indicati, il sistema risponderà con un alert."""
 
         # --- Toggle Tema ---
         self.toggle_cambia_tema = ft.Switch(label="Tema scuro", value=True, on_change=self.cambia_tema)
@@ -54,9 +66,15 @@ class View:
 
             # Sezione 2: Filtraggio
             # TODO
+            ft.Row(controls=[self.scelta_museo, self.scelta_epoca], alignment= ft.MainAxisAlignment.CENTER),
+            ft.Divider(),
 
             # Sezione 3: Artefatti
             # TODO
+            ft.Row(controls= [self.pulsante_Artefatti], alignment= ft.MainAxisAlignment.CENTER),
+            ft.Row(controls=[self.artefatti_scelti], alignment=ft.MainAxisAlignment.CENTER),
+            ft.Divider()
+
         )
 
         self.page.scroll = "adaptive"

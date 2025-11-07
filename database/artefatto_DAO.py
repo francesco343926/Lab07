@@ -8,6 +8,19 @@ from model.artefattoDTO import Artefatto
 
 class ArtefattoDAO:
     def __init__(self):
-        pass
-
+        self.database_connect = ConnessioneDB
     # TODO
+    def get_artefatti(self):
+        cnx = self.database_connect.get_connection()
+        cursor = cnx.cursor(dictionary=True)
+        query = """ SELECT *
+                FROM artefatto"""
+        cursor.execute(query)
+        result = []
+        for riga in cursor:
+            result.append(Artefatto(riga["id"],
+                                riga["nome"], riga["tipologia"], riga["epoca"],
+                                    riga["id_museo"]))
+        cursor.close()
+        cnx.close()
+        return result
