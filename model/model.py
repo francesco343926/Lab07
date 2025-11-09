@@ -34,12 +34,12 @@ class Model:
             return filtrati
         elif epoca=="Nessun filtro":
             for artefatto in artefatti:
-                if artefatto.id_museo== id-14:
+                if artefatto.id_museo== id:
                     filtrati.append(artefatto)
             return filtrati
         else:
             for artefatto in artefatti:
-                if artefatto.id_museo== id-14 and artefatto.epoca==epoca:
+                if artefatto.id_museo== id and artefatto.epoca==epoca:
                     filtrati.append(artefatto)
             return filtrati
 
